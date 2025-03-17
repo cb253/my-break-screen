@@ -10,6 +10,6 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("message", "Welcome to My Break Screen!");
-        return "index"; // Name of the HTML template
+        return "index";
     }
 }

@@ -8,13 +8,15 @@
 
     <title>My Break Screen</title>
 </head>
-<body id="body" style="background-color: #6699CC">
+<body id="body">
     <div class="container text-center" style="height: 25rem">
         <h1 class="text-light display-5" th:text="${message}"></h1>
         <label for="timeInput">Enter Time (HH:mm:ss):</label>
         <input type="text" id="timeInput">
         <button id="startButton">Start Timer</button>
-        <input type="color" id="colorChoice" value="#6699CC">
+        <label for="colorChoice">Background Color</label>
+        <input type="color" id="colorChoice">
+
     </div>
     <div>
         <h1 class="text-light display-1 container text-center" id="timerDisplay">Break Not Started</h1>
@@ -80,11 +82,22 @@
                 timerInterval = setInterval(updateDisplay, 1000);
 
             });
-            colorChoice.addEventListener("input", updateFirst, false);
-            colorChoice.addEventListener("change", watchColorPicker, false);
-            function watchColorPicker(event) {
-                document.getElementById("body").style.backgroundColor = event.target.value;
-            }
+
+            let colorPicker = document.getElementById("colorChoice");
+            const b = document.getElementById("body");
+            colorPicker.value = "#0077c0";
+            b.style.backgroundColor = colorPicker.value;
+
+            colorPicker.addEventListener("input", function (e) {
+                colorPicker.value = e.target.value;
+                b.style.backgroundColor = e.target.value;
+            });
+
+            colorPicker.addEventListener("change", function (e) {
+                colorPicker.value = e.target.value;
+                b.style.backgroundColor = e.target.value;
+            });
+
         });
     </script>
 
