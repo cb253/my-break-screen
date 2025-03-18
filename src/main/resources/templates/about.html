@@ -8,8 +8,15 @@
 
     <title>About My Break Screen</title>
 </head>
-<header th:replace="fragments/header.html :: header" ></header>
-<body style="background-color: #0077c0">
-    <h1>This is the about page</h1>
+<header th:insert="~{fragments/header.html :: header}" ></header>
+<body class="text-center" style="background-color: #5072A7">
+    <h1 class="text-white mb-5">Why a break screen?</h1>
+    <p class="text-white">Working in-office? Are you the type of lunch/break connoisseur who prefers to have much needed in-flight entertainment while off the clock?</p>
+    <i class="text-white">Look no further friend</i>
+    <p class="text-white">Simply throw on My Break Screen, and let the world know that you aren't goofing off on the clock.</p>
+    <p class="text-white">Be them passerby or meandering c-suites, pay them no mind! For you are on BREAK.</p>
+    <p class="text-white">Enjoy!</p>
+
+    <script th:src="@{js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

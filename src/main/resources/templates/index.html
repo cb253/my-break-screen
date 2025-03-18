@@ -8,10 +8,9 @@
 
     <title>My Break Screen</title>
 </head>
-<header th:replace="fragments/header.html :: header">
-</header>
+<header th:insert="~{fragments/header.html :: header}"></header>
 <body id="body">
-    <div class="container text-center" style="height: 40vh">
+    <div class="container text-center" style="height: 36vh">
         <label class="textElement" id="labelForTimeInput" for="timeInput">Enter Time (HH:mm:ss):</label>
         <input type="text" id="timeInput">
         <button id="startButton">Start Timer</button>
@@ -88,7 +87,7 @@
             //Logic for background color control
             let colorPicker = document.getElementById("colorChoice");
             const b = document.getElementById("body");
-            colorPicker.value = "#0077c0";
+            colorPicker.value = "#5072A7";
             b.style.backgroundColor = colorPicker.value;
 
             colorPicker.addEventListener("input", function (e) {
@@ -130,8 +129,6 @@
 
         });
     </script>
-
-
-    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
