@@ -8,18 +8,20 @@
 
     <title>My Break Screen</title>
 </head>
+<header th:replace="fragments/header.html :: header">
+</header>
 <body id="body">
-    <div class="container text-center" style="height: 25rem">
-        <h1 class="text-light display-5" th:text="${message}"></h1>
-        <label for="timeInput">Enter Time (HH:mm:ss):</label>
+    <div class="container text-center" style="height: 40vh">
+        <label class="textElement" id="labelForTimeInput" for="timeInput">Enter Time (HH:mm:ss):</label>
         <input type="text" id="timeInput">
         <button id="startButton">Start Timer</button>
-        <label for="colorChoice">Background Color</label>
+        <label class="textElement" id="colorChoiceLabel" for="colorChoice">Background Color</label>
         <input type="color" id="colorChoice">
-
+        <label class="textElement" id="textColorChoiceLabel"  for="textColorChoice">Text Color</label>
+        <input type="color" id="textColorChoice">
     </div>
     <div>
-        <h1 class="text-light display-1 container text-center" id="timerDisplay">Break Not Started</h1>
+        <h1 class="textElement display-1 container text-center" id="timerDisplay">Break Not Started</h1>
     </div>
 
     <script th:inline="javascript">
@@ -83,6 +85,7 @@
 
             });
 
+            //Logic for background color control
             let colorPicker = document.getElementById("colorChoice");
             const b = document.getElementById("body");
             colorPicker.value = "#0077c0";
@@ -97,6 +100,33 @@
                 colorPicker.value = e.target.value;
                 b.style.backgroundColor = e.target.value;
             });
+
+
+            //Logic for text color control
+            let textColorPicker = document.getElementById("textColorChoice");
+            let textElements = document.getElementsByClassName("textElement");
+            textColorPicker.value = "#FFFFFF";
+
+
+           window.addEventListener("load", function () {
+               for (let i = 0; i <= textElements.length; i++) {
+                   textElements[i].style.color = "#FFFFFF";
+               }
+           });
+
+            function updateTextColor(e) {
+                textColorPicker.value = e.target.value;
+                for (let i = 0; i <= textElements.length; i++) {
+                    textElements[i].style.color = e.target.value;
+                }
+            }
+
+            textColorPicker.addEventListener("input", updateTextColor);
+
+            textColorPicker.addEventListener("change", updateTextColor);
+
+
+
 
         });
     </script>
