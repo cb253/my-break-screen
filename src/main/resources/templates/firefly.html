@@ -7,10 +7,87 @@
   <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
 
   <title>About My Break Screen</title>
+
+  <style>
+    body {
+      background-color: #000;
+      overflow: hidden;
+      position: relative;
+      height: 100vh;
+    }
+
+    .firefly {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(to bottom, rgba(255, 255, 220, 0.5), rgba(255, 220, 150, 0.3)); /* Diffused gradient */
+      box-shadow: 0 0 40px 10px rgba(255, 255, 220, 1); /* Increased blur and spread, reduced opacity */
+      animation: flicker 1s infinite alternate;
+      /*transition: transform 10s linear;*/
+    }
+
+    @keyframes flicker {
+      0% {
+        opacity: 0.2;
+        box-shadow: 0 0 10px rgba(255, 255, 200, 0.8);
+      }
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 5px rgba(255, 200, 100, 0.5);
+      }
+    }
+  </style>
 </head>
 <header th:insert="~{fragments/header.html :: header}" ></header>
-<body class="text-center" style="background-color: #5072A7">
+<body style="background-color: #4158D0; background-image: linear-gradient(180deg, #4158D0 0%, #C850C0 84%, #FFCC70 100%); height: 100vh">
+  <div class="container text-center" style="height: 36vh">
+    <label class="textElement" id="labelForTimeInput" for="timeInput">Enter Time (HH:mm:ss):</label>
+    <input type="text" id="timeInput">
+    <button id="startButton">Start Timer</button>
+  </div>
+  <div>
+    <h1 class="display-1 container text-center text-white" id="timerDisplay">Break Not Started</h1>
+  </div>
 
-<script th:src="@{js/bootstrap.bundle.min.js}"></script>
+
+  <script>
+    window.addEventListener("load", function () {
+      function createFireflies(numFireflies) {
+        const body = document.body;
+        for (let i = 0; i < numFireflies; i++) {
+          const firefly = document.createElement('div');
+          firefly.classList.add('firefly');
+          firefly.style.left = `${Math.random() * 100}vw`;
+          firefly.style.top = `${Math.random() * 100}vh`;
+          firefly.style.transition = "transform 10s linear";
+
+          // Set a random initial animation time
+          firefly.style.animationPlayState = 'running';
+          firefly.style.animationDelay = `-${Math.random()}s`;
+          // Initial random position update (immediately)
+          setRandomPosition(firefly);
+          firefly.offsetHeight;
+
+          // Move to a new random position periodically
+          setInterval(() => {
+            setRandomPosition(firefly);
+          }, Math.random() * 5000 + 1000);
+
+          body.appendChild(firefly);
+        }
+      }
+
+      function setRandomPosition(element) {
+        const newX = Math.random() * 30 + "vw";
+        const newY = Math.random() * 30 + "vh";
+        element.style.transform = `translate(${newX}, ${newY})`;
+      }
+
+      createFireflies(40);
+    });
+  </script>
+
+  <script th:src="@{js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
