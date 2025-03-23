@@ -7,7 +7,6 @@
   <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
 
   <title>About My Break Screen</title>
-
   <style>
     body {
       background-color: #000;
@@ -51,7 +50,7 @@
   </div>
 
 
-  <script>
+  <script th:inline="javascript">
     window.addEventListener("load", function () {
       function createFireflies(numFireflies) {
         const body = document.body;
@@ -87,7 +86,7 @@
       createFireflies(40);
     });
   </script>
-
+  <div th:insert="~{fragments/timer.html :: timerLogic}"></div>
   <script th:src="@{js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

@@ -11,4 +11,10 @@ public class ScreensController {
     public String about(Model model) {
         return "firefly";
     }
+
+    @GetMapping("/electronic")
+    public String electronic(Model model) {
+        return "electronic";
+    }
+
 }
