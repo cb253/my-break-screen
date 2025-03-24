@@ -7,6 +7,16 @@
     <title>timer</title>
 </head>
 <body>
+    <div th:fragment="timerLayout">
+        <div class="container text-center" style="height: 36vh">
+            <label class="textElement" id="labelForTimeInput" for="timeInput">Enter Time (HH:mm:ss):</label>
+            <input type="text" id="timeInput">
+            <button id="startButton">Start Timer</button>
+        </div>
+        <div>
+            <h1 class="display-1 container text-center text-white" id="timerDisplay">Break Not Started</h1>
+        </div>
+    </div>
     <script th:inline="javascript" th:fragment="timerLogic">
     document.addEventListener('DOMContentLoaded', function() {
         const timeInput = document.getElementById('timeInput');
